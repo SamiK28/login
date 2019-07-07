@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './signup.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import './signupp.dart';
 
 void main() => runApp(MaterialApp(
       title: 'login',
@@ -13,6 +14,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String pno,pwd;
+
+
+  Future<Null> login()async{
+    final QuerySnapshot result =
+        await notesCollectionRef.where('phone', isEqualTo: pno).getDocuments();
+    final List<DocumentSnapshot> documents = result.documents;
+    if () {
+      
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,17 +41,23 @@ class _MyAppState extends State<MyApp> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
               child: TextField(
-                keyboardType: TextInputType.emailAddress,
+                onChanged: (v){
+                  pno=v;
+                },
+                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: "Enter email",
-                  labelText: "Email",
+                  hintText: "Enter Phone Number",
+                  labelText: "Phone Number",
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
               child: TextField(
+                onChanged: (v){
+                  pwd=v;
+                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Enter Password",
@@ -54,7 +72,9 @@ class _MyAppState extends State<MyApp> {
                 height: 45,
                 width: 125,
                 child: OutlineButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    login();
+                  },
                   child: Text(
                     'Login',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
@@ -78,7 +98,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Signup()),
+                      MaterialPageRoute(builder: (context) => New()),
                     );
                   },
                   child: Text(
@@ -95,18 +115,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 45,
-                width: 125,
-                child: RaisedButton(
-                  onPressed: (){},
-                  child: Text('1'),
-                  
-                ),
-              ),
-            ),
+
           ],
         ),
       ),
