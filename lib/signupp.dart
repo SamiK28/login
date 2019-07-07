@@ -113,12 +113,7 @@ class _NewState extends State<New> {
             //mainAxisAlignment: MainAxisAlignment.center,
 
             children: <Widget>[
-              Container(
-                child: Text(
-                  wel,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
+              
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
@@ -196,11 +191,11 @@ class _NewState extends State<New> {
                               // return object of type Dialog
                               return AlertDialog(
                                 title: Icon(Icons.warning),
-                                content: new Text("User Already Exists",textAlign: TextAlign.center,),
+                                content: Text("User Already Exists",textAlign: TextAlign.center,),
                                 actions: <Widget>[
                                   // usually buttons at the bottom of the dialog
-                                  new FlatButton(
-                                    child: new Text("Close"),
+                                  FlatButton(
+                                    child: Text("Close"),
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                       Navigator.pop(context);
