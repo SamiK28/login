@@ -180,40 +180,52 @@ class _NewState extends State<New> {
                   obscureText: true,
                 ),
               ),
-              RaisedButton(
-                onPressed: () async {
-                  if (cpass == pass && smscheck) {
-                    store(context);
-                    uc
-                        ? await showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              // return object of type Dialog
-                              return AlertDialog(
-                                title: Icon(Icons.warning),
-                                content: Text("User Already Exists",textAlign: TextAlign.center,),
-                                actions: <Widget>[
-                                  // usually buttons at the bottom of the dialog
-                                  FlatButton(
-                                    child: Text("Close"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      Navigator.pop(context);
-                                      
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 40,
+                      width: 120,
+                      child: RaisedButton(
+                        onPressed: () async {
+                          if (cpass == pass && smscheck) {
+                            store(context);
+                            uc
+                                ? await showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      // return object of type Dialog
+                                      return AlertDialog(
+                                        title: Icon(Icons.warning),
+                                        content: Text("User Already Exists",textAlign: TextAlign.center,),
+                                        actions: <Widget>[
+                                          // usually buttons at the bottom of the dialog
+                                          FlatButton(
+                                            child: Text("Close"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                              Navigator.pop(context);
+                                              
+                                            },
+                                          ),
+                                        ],
+                                      );
                                     },
-                                  ),
-                                ],
-                              );
-                            },
-                          )
-                        : null;
-                        
-                    
-                  }
-                },
-                child: Text('Submit'),
-                textColor: Colors.white,
-                color: Colors.blue,
+                                  )
+                                : Navigator.pop(context);
+                                
+                            
+                          }
+                        },
+                        child: Text('Submit'),
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
